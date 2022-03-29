@@ -61,10 +61,8 @@ def get_tracks(auth_header, seed_artists, seed_genres, seed_tracks):
 
 def add_to_playlist(auth_header, track_uri, playlist_id):
     """Add a specified track to a specified playlist"""
-    endpoint = f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks?uris={track_uri}'
-    print(endpoint)
+    endpoint = f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks?uris={quote(track_uri)}'
     requests.post(endpoint, headers=auth_header)
-
 
 def get_genre_seeds(auth_header):
     """Gets a list of available seeds"""
@@ -91,7 +89,7 @@ def search(auth_header, query: str, search_type: str):
 app = FastAPI()
 
 origins = [
-    # "http://localhost:3000",
+    "http://localhost:3000",
     os.environ.get('FRONTEND_URL'),
     '*'
 ]

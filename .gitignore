@@ -1,2 +1,4 @@
 # Project exclude paths
 /venv/
+__pycache__/main.cpython-310.pyc
+get-pip.py
