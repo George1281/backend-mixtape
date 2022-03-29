@@ -61,7 +61,8 @@ def get_tracks(auth_header, seed_artists, seed_genres, seed_tracks):
 
 def add_to_playlist(auth_header, track_uri, playlist_id):
     """Add a specified track to a specified playlist"""
-    endpoint = f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks?uris={quote(track_uri)}'
+    endpoint = f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks?uris={track_uri}'
+    print(endpoint)
     requests.post(endpoint, headers=auth_header)
 
 
