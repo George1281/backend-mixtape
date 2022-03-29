@@ -64,6 +64,7 @@ def add_to_playlist(auth_header, track_uri, playlist_id):
     endpoint = f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks?uris={quote(track_uri)}'
     requests.post(endpoint, headers=auth_header)
 
+
 def get_genre_seeds(auth_header):
     """Gets a list of available seeds"""
     endpoint = 'https://api.spotify.com/v1/recommendations/available-genre-seeds'
@@ -88,7 +89,11 @@ def search(auth_header, query: str, search_type: str):
 
 app = FastAPI()
 
-origins = ['*']
+origins = [
+    # "http://localhost:3000",
+    os.environ.get('FRONTEND_URL').
+    '*'
+]
 
 app.add_middleware(
     CORSMiddleware,
