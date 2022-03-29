@@ -88,11 +88,7 @@ def search(auth_header, query: str, search_type: str):
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:3000",
-    os.environ.get('FRONTEND_URL'),
-    '*'
-]
+origins = ['*']
 
 app.add_middleware(
     CORSMiddleware,
