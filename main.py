@@ -3,6 +3,7 @@ import os
 import requests
 from urllib.parse import quote
 from fastapi import FastAPI, Query
+from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -90,17 +91,18 @@ def search(auth_header, query: str, search_type: str):
 app = FastAPI()
 
 origins = [
-    # "http://localhost:3000",
+    "http://localhost:3000",
     os.environ.get('FRONTEND_URL'),
     '*'
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    max_age=3600,
 )
 
 
